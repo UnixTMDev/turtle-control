@@ -67,7 +67,19 @@ export default function TurtlePage({ turtle, enabled, setDisableEvents }: Turtle
 	const classes = useStyles({ enabled });
 
 	const placeBlock = (dir: BlockDirection) => {
-		if (turtle.inventory[turtle.selectedSlot - 1]?.name === 'minecraft:sign') {
+		const validItems = new Set([
+                    'minecraft:sign',
+                    'minecraft:oak_sign',
+                    'minecraft:spruce_sign',
+                    'minecraft:birch_sign',
+                    'minecraft:jungle_sign',
+                    'minecraft:acacia_sign',
+                    'minecraft:dark_oak_sign',
+                    'minecraft:crimson_sign',
+                    'minecraft:warped_sign',
+                    'minecraft:mangrove_sign'
+                ]);
+		if ( validItems.has(turtle.inventory[turtle.selectedSlot - 1]?.name) ) {
 			currentSignDirection.current = dir;
 			setSignText('');
 		} else {
